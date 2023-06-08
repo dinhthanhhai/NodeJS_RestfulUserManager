@@ -17,7 +17,9 @@ let getHomePage = (req, res) => {
                 })
             });
             //JSON.stringify: chuyen doi object, arr, chuoi,..thanh chuoi JSON
-            return res.render('index.ejs', { dataUser: JSON.stringify(data) })
+            //return res.render('index.ejs', { dataUser: JSON.stringify(data) })
+            return res.render('index.ejs', { dataUser: data })
+
         }
     );
 

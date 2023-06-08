@@ -11,8 +11,8 @@ const connection = mysql.createConnection({
 connection.query(
     'SELECT * FROM `users`',
     function (err, results, fields) {
-        console.log('>>>check mysql')
-        console.log(results); // results contains rows returned by server
+        console.log('>>>Ket noi db thanh cong')
+        //console.log(results); // results contains rows returned by server
     }
 );
 
