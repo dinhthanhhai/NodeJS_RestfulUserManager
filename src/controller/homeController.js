@@ -1,30 +1,17 @@
-import connection from "../configs/connectDB"
+import pool from "../configs/connectDB"
 
-let getHomePage = (req, res) => {
-    let data = [];
-    //ket noi db
-    connection.query(
-        'SELECT * FROM `users`',
-        function (err, results, fields) {
-            //console.log(results); // results contains rows returned by server
-            results.map((row) => {
-                data.push({
-                    id: row.id,
-                    email: row.email,
-                    address: row.address,
-                    firstName: row.firstName,
-                    lastName: row.lastName
-                })
-            });
-            //JSON.stringify: chuyen doi object, arr, chuoi,..thanh chuoi JSON
-            //return res.render('index.ejs', { dataUser: JSON.stringify(data) })
-            return res.render('index.ejs', { dataUser: data })
+let getHomePage = async (req, res) => {
 
-        }
-    );
+    const [rows, fields] = await pool.execute('SELECT * FROM `users`');
+    return res.render('index.ejs', { dataUser: rows })
+}
 
+let getDetailPage = async (req, res) => {
+    let id = req.params.userId;
+    let user = await pool.execute('SELECT * from users where id = ?', [id])
+    return res.send(JSON.stringify(user[0]));
 }
 
 module.exports = {
-    getHomePage
+    getHomePage, getDetailPage
 }
