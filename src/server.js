@@ -3,10 +3,6 @@ import configViewEngine from './configs/viewEngine';
 import initWebroute from './route/web'
 import connection from './configs/connectDB'
 require('dotenv').config();
-
-
-
-
 const app = express()//tao app de su dung tat ca ham cua express
 const port = process.env.PORT || 3000;//neu process.env.PORT: undefined thi dung cong 3000
 

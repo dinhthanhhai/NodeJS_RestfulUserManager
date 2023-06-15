@@ -6,10 +6,9 @@ const initWebroute = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/detail/user/:userId', homeController.getDetailPage);
     router.post('/create-new-user', homeController.createNewUser);
-    router.get('/about', (req, res) => {
-        res.send(`Dinh Thanh Hai`)
-    })
-
+    router.post('/delete-user', homeController.deleteUser);
+    router.get('/edit-user/:userId', homeController.getEditPage);
+    router.post('/', homeController.postUpdateUser)
     return app.use('/', router);
 
 }
